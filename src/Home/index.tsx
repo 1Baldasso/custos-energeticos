@@ -173,7 +173,7 @@ const Home: React.FC = () => {
   const handleEnviar = () => {
     axios
       .post<ResponseType>(
-        "https://localhost:7078/Energia",
+        `${import.meta.env.VITE_API_BASE_URL}/Energia`,
         form.getFieldsValue()
       )
       .then((response) => {
