@@ -183,6 +183,21 @@ const Home: React.FC = () => {
         form.resetFields();
       });
   };
+
+  const meses = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
   return (
     <div className="form-container">
       <div className="form-header">
@@ -193,20 +208,23 @@ const Home: React.FC = () => {
         </Paragraph>
       </div>
       <Form form={form} layout="vertical" className="styled-form">
+        <Divider orientation="left">DADOS INICIAIS</Divider>
         <Row gutter={[16, 16]}>
-          <Col span={24}>
-            <Form.Item
-              label="kWh médio Mensal"
-              className="form-item"
-              name={["consumoMedioMensalKWH"]}
-            >
-              <Input
-                type="number"
-                placeholder="Informe a quantidade"
-                step={0.01}
-              />
-            </Form.Item>
-          </Col>
+          {meses.map((mes, index) => (
+            <Col span={4}>
+              <Form.Item
+                label={`kWh ${mes}`}
+                className="form-item"
+                name={["consumos", index]}
+              >
+                <Input
+                  type="number"
+                  placeholder="Informe a quantidade"
+                  step={0.01}
+                />
+              </Form.Item>
+            </Col>
+          ))}
           <Col span={24}>
             <Form.Item
               label="Tipo de Fase"
@@ -220,6 +238,16 @@ const Home: React.FC = () => {
               </Select>
             </Form.Item>
           </Col>
+          <Col span={24}>
+            <Form.Item
+              label="Custo kWh"
+              className="form-item"
+              name={["custokwh"]}
+            >
+              <Input type="number" placeholder="Digite aqui" step={0.01} />
+            </Form.Item>
+          </Col>
+          <Divider orientation="left">DIMENSIONAMENTO BIODIGESTOR</Divider>
           <Col span={24}>
             <Form.Item label="Animal" className="form-item" name={["animal"]}>
               <Select placeholder="Selecione o tipo de animal">
@@ -256,6 +284,7 @@ const Home: React.FC = () => {
               </Select>
             </Form.Item>
           </Col>
+          <Divider orientation="left">DIMENSIONAMENTO SISTEMA EÓLICO</Divider>
           <Col span={24}>
             <Form.Item label="Aeroicidencia" className="form-item">
               <span>
@@ -269,7 +298,10 @@ const Home: React.FC = () => {
               </span>
               <Row gutter={[16, 16]}>
                 <Col span={12}>
-                  <Form.Item label="k" name={["valoresAeroincidencia", "k"]}>
+                  <Form.Item
+                    label="Parâmetro de forma adimensional (k)"
+                    name={["valoresAeroincidencia", "k"]}
+                  >
                     <Input
                       type="number"
                       placeholder="Digite aqui"
@@ -278,7 +310,10 @@ const Home: React.FC = () => {
                   </Form.Item>
                 </Col>
                 <Col span={12}>
-                  <Form.Item label="c" name={["valoresAeroincidencia", "c"]}>
+                  <Form.Item
+                    label="Parâmetro de escala em unidades de velocidade do vento. (c)"
+                    name={["valoresAeroincidencia", "c"]}
+                  >
                     <Input
                       type="number"
                       placeholder="Digite aqui"
@@ -289,6 +324,9 @@ const Home: React.FC = () => {
               </Row>
             </Form.Item>
           </Col>
+          <Divider orientation="left">
+            DIMENSIONAMENTO SISTEMA FOTOVOLTAICO
+          </Divider>
           <Col span={24}>
             <Form.Item
               label="Irradiação Solar Média Mensal (Plano Inclinado - Ângulo igual a latitude)"
