@@ -1,6 +1,6 @@
-import React from 'react';
-import Home from './Home/index';
-import 'antd/dist/reset.css'; // Importação do CSS do Ant Design
+import React from "react";
+import Home from "./Home/index";
+import "antd/dist/reset.css";
 
 const App: React.FC = () => {
   return (
@@ -8,6 +8,6 @@ const App: React.FC = () => {
       <Home />
     </div>
   );
-}
+};
 
 export default App;

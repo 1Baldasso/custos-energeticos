@@ -20,6 +20,8 @@ import { ResponseType, TipoAnimal, TipoFase } from "../infrastructure.types";
 import axios from "axios";
 import { maskMoney } from "./maskMoney";
 import { getAnimalNome } from "./getAnimalNome";
+import FormItemLabel from "antd/es/form/FormItemLabel";
+import Actions from "../Actions";
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
@@ -170,11 +172,17 @@ const Home: React.FC = () => {
     [response]
   );
 
+  const keys = ["aerogeradores", "paineisSolares", "inversoresSolares"];
   const handleEnviar = () => {
+    const values = form.getFieldsValue();
+    keys.reduce((acc, key) => {
+      acc[key] = JSON.parse(localStorage.getItem(key) || "[]");
+      return acc;
+    }, values);
     axios
       .post<ResponseType>(
         `${import.meta.env.VITE_API_BASE_URL}/Energia`,
-        form.getFieldsValue()
+        values
       )
       .then((response) => {
         console.log(response.data);
@@ -185,21 +193,22 @@ const Home: React.FC = () => {
   };
 
   const meses = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
+    "Jan",
+    "Fev",
+    "Mar",
+    "Abr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Set",
+    "Out",
+    "Nov",
+    "Dez",
   ];
   return (
     <div className="form-container">
+      <Actions />
       <div className="form-header">
         <Title level={2}>Bem vindo</Title>
         <Paragraph>
@@ -210,21 +219,19 @@ const Home: React.FC = () => {
       <Form form={form} layout="vertical" className="styled-form">
         <Divider orientation="left">DADOS INICIAIS</Divider>
         <Row gutter={[16, 16]}>
-          {meses.map((mes, index) => (
-            <Col span={4}>
-              <Form.Item
-                label={`kWh ${mes}`}
-                className="form-item"
-                name={["consumos", index]}
-              >
-                <Input
-                  type="number"
-                  placeholder="Informe a quantidade"
-                  step={0.01}
-                />
-              </Form.Item>
-            </Col>
-          ))}
+          <Col span={24}>
+            <Form.Item
+              label={`kWh Médio Mensal`}
+              className="form-item"
+              name={"consumo"}
+            >
+              <Input
+                type="number"
+                placeholder="Informe a quantidade"
+                step={0.01}
+              />
+            </Form.Item>
+          </Col>
           <Col span={24}>
             <Form.Item
               label="Tipo de Fase"
@@ -328,13 +335,19 @@ const Home: React.FC = () => {
             DIMENSIONAMENTO SISTEMA FOTOVOLTAICO
           </Divider>
           <Col span={24}>
-            <Form.Item
+            <FormItemLabel
               label="Irradiação Solar Média Mensal (Plano Inclinado - Ângulo igual a latitude)"
-              className="form-item"
-              name={["incidenciaSolarMediaMensal"]}
-            >
-              <Input type="number" step={0.01} />
-            </Form.Item>
+              prefixCls="false"
+            />
+            <Row>
+              {meses.map((mes, index) => (
+                <Col span={2}>
+                  <Form.Item label={mes} name={["incidenciaSolar", index]}>
+                    <Input type="number" step={0.01} />
+                  </Form.Item>
+                </Col>
+              ))}
+            </Row>
             <span>
               Acesse{" "}
               <a

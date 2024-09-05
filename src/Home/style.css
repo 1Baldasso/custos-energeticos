@@ -1,36 +1,40 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    background-color: #f0f2f5;
-    padding: 20px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: #f0f2f5;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .form-header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
-.form-footer{
-    text-align: center;
-    margin-top: 20px;
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .styled-form {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-item {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .submit-button {
-    width: 100%;
+  width: 100%;
+}
+
+.ant-form-item-label {
+  font-weight: 500;
 }
