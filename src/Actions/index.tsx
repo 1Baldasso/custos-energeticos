@@ -1,10 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Flex, Form, Input, InputNumber, Modal, Radio } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Radio,
+  Typography,
+} from "antd";
 import { PlusOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import AerogeradorForm from "./AerogeradorForm";
 import InversorForm from "./InversorForm";
 
+const { Paragraph } = Typography;
 const Actions: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [form] = Form.useForm();
@@ -82,6 +92,12 @@ const Actions: React.FC = () => {
           >
             Adicionar
           </Button>
+          <Paragraph style={{ width: "75%", textAlign: "center" }}>
+            Utilize os Botões ao lado para adicionar e remover Inversores
+            Solares, Paineis Solares e Aerogeradores. Os itens adicionados serão
+            considerados no momento do cálculo e podem ser escolhidos pelo
+            algoritmo
+          </Paragraph>
           <Button
             type="dashed"
             icon={<CloseCircleOutlined />}
