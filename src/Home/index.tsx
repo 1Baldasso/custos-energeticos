@@ -245,7 +245,7 @@ const Home: React.FC = () => {
               </Select>
             </Form.Item>
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <Form.Item
               label="Custo kWh"
               className="form-item"
@@ -253,7 +253,7 @@ const Home: React.FC = () => {
             >
               <Input type="number" placeholder="Digite aqui" step={0.01} />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Divider orientation="left">DIMENSIONAMENTO BIODIGESTOR</Divider>
           <Col span={24}>
             <Form.Item label="Animal" className="form-item" name={["animal"]}>
