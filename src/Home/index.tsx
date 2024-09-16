@@ -56,7 +56,7 @@ const Home: React.FC = () => {
         ...response?.aerogerador.tabela.energiaGerada.reduce(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (acc: any, item, index) => {
-            acc[`ano${index}`] = item.valor;
+            acc[`ano${index}`] = item.valor.toFixed(4);
             return acc;
           },
           {}
