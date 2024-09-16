@@ -188,7 +188,7 @@ const Home: React.FC = () => {
         console.log(response.data);
         setResponse(response.data);
         setModalVisible(true);
-        form.resetFields();
+        // form.resetFields();
       });
   };
 
@@ -392,7 +392,7 @@ const Home: React.FC = () => {
                 <b>{response.melhor}</b>
               </Descriptions.Item>
             </Descriptions>
-            <Divider orientation="left">Aerogeradores</Divider>
+            <Divider orientation="left">Eólico</Divider>
             <Descriptions layout="vertical">
               <Descriptions.Item label="LCOE">
                 {response.aerogerador.lcoe}
@@ -435,7 +435,7 @@ const Home: React.FC = () => {
             </Descriptions>
             <Divider orientation="left">Tabelas</Divider>
             <Collapse>
-              <Collapse.Panel header="Tabela Aerogerador" key="1">
+              <Collapse.Panel header="Tabela Eólico" key="1">
                 <Table
                   columns={columns}
                   dataSource={aeroDataSource}
