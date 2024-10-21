@@ -33,6 +33,7 @@ export type ConjuntoResposta<T> = {
 
 export type AerogeradoresDadosExtra = {
   aerogerador: Aerogerador;
+  quantidade: number;
 };
 
 export type FotovoltaicoDadosExtra = {

@@ -56,7 +56,11 @@ const Home: React.FC = () => {
         ...response?.aerogerador.tabela.energiaGerada.reduce(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (acc: any, item, index) => {
-            acc[`ano${index}`] = item.valor.toFixed(4);
+            acc[`ano${index}`] = new Intl.NumberFormat("pt-BR", {
+              style: "decimal",
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3,
+            }).format(item.valor);
             return acc;
           },
           {}
@@ -97,7 +101,11 @@ const Home: React.FC = () => {
         ...response?.biodigestor.tabela.energiaGerada.reduce(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (acc: any, item, index) => {
-            acc[`ano${index}`] = item.valor;
+            acc[`ano${index}`] = new Intl.NumberFormat("pt-BR", {
+              style: "decimal",
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3,
+            }).format(item.valor);
             return acc;
           },
           {}
@@ -138,7 +146,11 @@ const Home: React.FC = () => {
         ...response?.fotovoltaico.tabela.energiaGerada.reduce(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (acc: any, item, index) => {
-            acc[`ano${index}`] = item.valor;
+            acc[`ano${index}`] = new Intl.NumberFormat("pt-BR", {
+              style: "decimal",
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3,
+            }).format(item.valor);
             return acc;
           },
           {}
@@ -401,7 +413,7 @@ const Home: React.FC = () => {
                 {maskMoney(response.aerogerador.custoImplantacao)}
               </Descriptions.Item>
               <Descriptions.Item label="Aerogerador">
-                {`${response.aerogerador.dadosExtra.aerogerador.modelo}`}
+                {`${response.aerogerador.dadosExtra.quantidade} - ${response.aerogerador.dadosExtra.aerogerador.modelo}`}
               </Descriptions.Item>
             </Descriptions>
             <Divider orientation="left">Fotovoltaico</Divider>
